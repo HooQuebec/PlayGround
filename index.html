@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f4ea">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+  <title>Wildbound — Creature Keepers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Wildbound home"><span class="brand-mark">✦</span><span>WILDBOUND<span class="brand-sub">CREATURE KEEPERS</span></span></a>
+      <div class="top-stats">
+        <div class="stat hp-stat"><span class="stat-icon">♥</span><span><small>BASE HP</small><strong id="hpValue">20 <i>/ 20</i></strong></span><div class="hp-track"><i id="hpBar"></i></div></div>
+        <div class="stat energy-stat"><span class="stat-icon">✦</span><span><small>ENERGY</small><strong id="energyValue">260</strong></span></div>
+        <div class="stat wave-stat"><span class="stat-icon">⚑</span><span><small>WAVE</small><strong id="waveValue">0 <i>/ 10</i></strong></span></div>
+      </div>
+      <div class="top-actions"><span class="save-state"><i></i> FIELD READY</span><button class="icon-button" id="soundButton" aria-label="Toggle sound" title="Sound is off">♫</button></div>
+    </header>
+
+    <section class="game-layout">
+      <section class="field-column">
+        <div class="field-heading"><div><div class="eyebrow"><span class="eyebrow-dot"></span> THE SUNSPROUT TRAIL</div><h1>Fernvale <span>Crossing</span></h1></div><div class="field-meta"><span class="weather">☀ &nbsp;CLEAR SKIES</span><span class="map-count">MAP 01 <b>·</b> 01</span></div></div>
+        <div class="board-wrap"><canvas id="gameCanvas" aria-label="Creature defense game map"></canvas><div class="map-corner corner-tl">NORTH MEADOW <span>↗</span></div><div class="map-corner corner-br">FIELD 01 <span>✦</span></div><div id="toast" class="toast" aria-live="polite"></div></div>
+        <div class="field-footer"><div class="path-key"><span class="key-dot"></span> WILD TRAIL <span class="key-sep">/</span><span class="key-tower">✦</span> YOUR CREATURES <span class="key-sep">/</span><span class="key-base">⌂</span> BASE</div><div class="wave-progress"><span id="waveLabel">PREPARE YOUR DEFENSE</span><div class="progress-track"><i id="waveProgress"></i></div></div></div>
+      </section>
+
+      <aside class="command-panel">
+        <section class="wave-card">
+          <div class="wave-card-top"><div><span class="eyebrow">DEFENSE STATUS</span><h2 id="phaseTitle">A quiet moment</h2></div><span class="phase-badge" id="phaseBadge">PREP</span></div>
+          <p id="phaseCopy">Choose a companion and place them beside the trail. The wild ones are coming.</p>
+          <div class="wave-buttons"><button class="primary-button" id="waveButton"><span>▶</span> START WAVE 1</button><button class="square-button" id="pauseButton" aria-label="Pause game" title="Pause">Ⅱ</button><button class="square-button speed-button" id="speedButton" aria-label="Toggle game speed">1×</button></div>
+        </section>
+        <section class="roster-section">
+          <div class="section-title"><div><span class="eyebrow">YOUR COMPANIONS</span><h2>Choose a creature</h2></div><span class="tiny-count" id="rosterCount">03</span></div>
+          <div class="creature-list" id="creatureList"></div>
+        </section>
+        <section class="selection-panel" id="selectionPanel">
+          <div class="selection-empty"><span class="empty-spark">✦</span><div><strong>Nothing selected</strong><small>Pick a creature, then tap an empty tile</small></div></div>
+        </section>
+        <div class="panel-hint"><span>⌖</span> TAP A CREATURE ON THE MAP TO MANAGE IT</div>
+      </aside>
+    </section>
+    <footer class="bottom-bar"><div class="type-legend"><span class="legend-label">TYPE CHART</span><span class="type-chip fire">🔥 FIRE</span><span class="type-arrow">›</span><span class="type-chip grass">🌿 GRASS</span><span class="type-arrow">›</span><span class="type-chip water">💧 WATER</span><span class="type-arrow">›</span><span class="type-chip fire">🔥</span><span class="legend-note">·  ELECTRIC zaps fliers</span></div><div class="footer-tip"><span>✦</span> A good trainer makes every type shine.</div></footer>
+  </main>
+  <div class="modal-backdrop hidden" id="choiceModal" role="dialog" aria-modal="true" aria-labelledby="choiceTitle"><div class="choice-modal"><div class="choice-spark">✦</div><span class="eyebrow">WAVE COMPLETE</span><h2 id="choiceTitle">A new friend is near!</h2><p id="choiceCopy">Choose one companion to join your team.</p><div class="choice-cards" id="choiceCards"></div><div class="choice-foot"><span>CHOOSE ONE TO CONTINUE</span><span>✦ &nbsp; TEAM UP!</span></div></div></div>
+  <div class="end-overlay hidden" id="endOverlay"><div class="end-card"><span class="end-icon" id="endIcon">✦</span><span class="eyebrow">FERNVALE CROSSING</span><h2 id="endTitle">Trail defended!</h2><p id="endCopy">The meadow is safe thanks to you and your companions.</p><button class="primary-button" id="restartButton">↻ &nbsp; PLAY AGAIN</button></div></div>
+  <script src="game.js"></script>
+</body>
+</html>
